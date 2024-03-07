@@ -38,4 +38,8 @@ public class PostService {
     public void deletePost(Long id) {
         postRepository.deletePost(id);
     }
+
+    public List<Post> getUserPosts(Long userId) {
+        return postRepository.getUserPosts(userId);
+    }
 }

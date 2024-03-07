@@ -76,4 +76,15 @@ public class PostRepository {
                 .bodyToMono(Post.class)
                 .block();
     }
+
+    public List<Post> getUserPosts(Long userId) {
+        return List.of(Objects.requireNonNull(webClient
+                .get()
+                .uri(String.join("", "/users/", userId.toString(), "/posts"))
+                .retrieve()
+                .onStatus(HttpStatusCode::is5xxServerError,
+                        error -> Mono.error(new RuntimeException("API не отвечает")))
+                .bodyToMono(Post[].class)
+                .block()));
+    }
 }

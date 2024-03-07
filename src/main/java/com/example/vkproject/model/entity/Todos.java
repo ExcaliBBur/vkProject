@@ -5,10 +5,12 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Album {
+public class Todos {
     Long userId;
 
     Long id;
 
     String title;
+
+    Boolean completed;
 }

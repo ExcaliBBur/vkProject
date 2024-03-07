@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 @Tag(name = "photos", description = "Контроллер для работы с фотографиями")
 @AllArgsConstructor
 public class PhotoController {

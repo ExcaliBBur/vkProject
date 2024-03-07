@@ -10,21 +10,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/albums")
+@RequestMapping("/api")
 @Tag(name = "albums", description = "Контроллер для работы с альбомами")
 @AllArgsConstructor
 public class AlbumController {
     private final AlbumService albumService;
-    @GetMapping
+    @GetMapping("/albums")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить альбомы")
-    public List<Album> getAlbums() {
-        return albumService.getAlbums();
+    public List<Album> getAlbums(
+            Long userId
+    ) {
+        if (Objects.isNull(userId)) {
+            return albumService.getAlbums();
+        }
+        return albumService.getUserAlbums(userId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить альбом")
     public Album getAlbum(
@@ -34,7 +40,7 @@ public class AlbumController {
         return albumService.getAlbum(id);
     }
 
-    @PostMapping
+    @PostMapping("/albums")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Создать альбом")
     public Album createAlbum(
@@ -44,7 +50,7 @@ public class AlbumController {
         return albumService.createAlbum(album);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить альбом")
     public Album updateAlbum(
@@ -56,7 +62,7 @@ public class AlbumController {
         return albumService.updateAlbum(album, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Удалить альбом")
     public void deleteAlbum(
@@ -64,5 +70,15 @@ public class AlbumController {
             Long id
     ) {
        albumService.deleteAlbum(id);
+    }
+
+    @GetMapping("/users/{id}/albums")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Получить альбомы пользователя")
+    public List<Album> getUserAlbumsByPath(
+            @PathVariable
+            Long id
+    ) {
+        return albumService.getUserAlbums(id);
     }
 }

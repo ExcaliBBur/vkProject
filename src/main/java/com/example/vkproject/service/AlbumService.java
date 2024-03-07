@@ -37,4 +37,8 @@ public class AlbumService {
     public void deleteAlbum(Long id) {
         albumRepository.deleteAlbum(id);
     }
+
+    public List<Album> getUserAlbums(Long userId) {
+        return albumRepository.getUserAlbums(userId);
+    }
 }

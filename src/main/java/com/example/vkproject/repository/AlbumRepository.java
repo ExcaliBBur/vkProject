@@ -75,4 +75,15 @@ public class AlbumRepository {
                 .bodyToMono(Album.class)
                 .block();
     }
+
+    public List<Album> getUserAlbums(Long userId) {
+        return List.of(Objects.requireNonNull(webClient
+                .get()
+                .uri(String.join("", "/users/", userId.toString(), "/albums"))
+                .retrieve()
+                .onStatus(HttpStatusCode::is5xxServerError,
+                        error -> Mono.error(new RuntimeException("API не отвечает")))
+                .bodyToMono(Album[].class)
+                .block()));
+    }
 }

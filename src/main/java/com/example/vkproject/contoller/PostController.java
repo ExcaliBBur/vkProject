@@ -10,22 +10,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api")
 @Tag(name = "posts", description = "Контроллер для работы с постами")
 @AllArgsConstructor
 public class PostController {
     private final PostService postService;
 
-    @GetMapping
+    @GetMapping("/posts")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить посты")
-    public List<Post> getPosts() {
-        return postService.getPosts();
+    public List<Post> getPosts(
+            Long userId
+    ) {
+        if (Objects.isNull(userId)) {
+            return postService.getPosts();
+        }
+        return postService.getUserPosts(userId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить пост")
     public Post getPost(
@@ -35,7 +41,7 @@ public class PostController {
         return postService.getPost(id);
     }
 
-    @PostMapping
+    @PostMapping("/posts")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Создать пост")
     public Post createPost(
@@ -45,7 +51,7 @@ public class PostController {
         return postService.createPost(post);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить пост")
     public Post updatePost(
@@ -57,7 +63,7 @@ public class PostController {
         return postService.updatePost(post, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Удалить пост")
     public void deletePost(
@@ -67,4 +73,13 @@ public class PostController {
         postService.deletePost(id);
     }
 
+    @GetMapping("/users/{id}/posts")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Получить посты пользователя")
+    public List<Post> getUserPostsByPath(
+            @PathVariable
+            Long id
+    ) {
+        return postService.getUserPosts(id);
+    }
 }
