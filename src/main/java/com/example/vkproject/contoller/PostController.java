@@ -1,7 +1,7 @@
 package com.example.vkproject.contoller;
 
-import com.example.vkproject.dto.PostRequest;
-import com.example.vkproject.model.Post;
+import com.example.vkproject.dto.post.PostRequest;
+import com.example.vkproject.model.entity.Post;
 import com.example.vkproject.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

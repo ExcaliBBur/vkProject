@@ -1,10 +1,10 @@
-package com.example.vkproject.dto;
+package com.example.vkproject.dto.post;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class PostRequest {
     Long userId;
 

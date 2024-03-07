@@ -1,7 +1,8 @@
 package com.example.vkproject.repository;
 
-import com.example.vkproject.dto.post.PostRequest;
+import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.Post;
+import com.example.vkproject.model.entity.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatusCode;
@@ -15,65 +16,64 @@ import java.util.Objects;
 
 @Repository
 @AllArgsConstructor
-public class PostRepository {
+public class UserRepository {
     private final WebClient webClient;
-
-    public List<Post> getPosts() {
+    public List<User> getUsers() {
         return List.of(Objects.requireNonNull(webClient
                 .get()
-                .uri("/posts")
+                .uri("/users")
                 .retrieve()
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Post[].class)
+                .bodyToMono(User[].class)
                 .block()));
     }
 
-    public Post getPost(Long id) {
+    public User getUser(Long id) {
         return webClient
                 .get()
-                .uri(String.join("", "/posts/", id.toString()))
+                .uri(String.join("", "/users/", id.toString()))
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError,
-                        error -> Mono.error(new EntityNotFoundException("Такого поста не существует")))
+                        error -> Mono.error(new EntityNotFoundException("Такого пользователя не существует")))
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Post.class)
+                .bodyToMono(User.class)
                 .block();
     }
 
-    public Post createPost(PostRequest post) {
+    public User createUser(UserRequest user) {
         return webClient
                 .post()
-                .uri("/posts")
-                .body(BodyInserters.fromValue(post))
+                .uri("/users")
+                .body(BodyInserters.fromValue(user))
                 .retrieve()
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Post.class)
+                .bodyToMono(User.class)
                 .block();
     }
 
-    public Post updatePost(PostRequest post, Long id) {
+    public User updateUser(UserRequest user, Long id) {
         return webClient
                 .patch()
-                .uri(String.join("", "/posts/", id.toString()))
-                .body(BodyInserters.fromValue(post))
+                .uri(String.join("", "/users/", id.toString()))
+                .body(BodyInserters.fromValue(user))
                 .retrieve()
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Post.class)
+                .bodyToMono(User.class)
                 .block();
     }
 
-    public void deletePost(Long id) {
+    public void deleteUser(Long id) {
         webClient
                 .delete()
-                .uri(String.join("", "/posts/", id.toString()))
+                .uri(String.join("", "/users/", id.toString()))
                 .retrieve()
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Post.class)
+                .bodyToMono(User.class)
                 .block();
     }
 }

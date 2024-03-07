@@ -1,6 +1,6 @@
 package com.example.vkproject.repository;
 
-import com.example.vkproject.model.entity.Comment;
+import com.example.vkproject.model.entity.Photo;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Repository;
@@ -12,17 +12,17 @@ import java.util.Objects;
 
 @Repository
 @AllArgsConstructor
-public class CommentRepository {
+public class PhotosRepository {
     private final WebClient webClient;
 
-    public List<Comment> getCommentsByPostId(Long postId) {
+    public List<Photo> getPhotosByAlbumId(Long albumId) {
         return List.of(Objects.requireNonNull(webClient
                 .get()
-                .uri(String.join("", "/posts/", postId.toString(), "/comments"))
+                .uri(String.join("", "/albums/", albumId.toString(), "/photos"))
                 .retrieve()
                 .onStatus(HttpStatusCode::is5xxServerError,
                         error -> Mono.error(new RuntimeException("API не отвечает")))
-                .bodyToMono(Comment[].class)
+                .bodyToMono(Photo[].class)
                 .block()));
     }
 }

@@ -1,6 +1,6 @@
 package com.example.vkproject.contoller;
 
-import com.example.vkproject.model.Comment;
+import com.example.vkproject.model.entity.Comment;
 import com.example.vkproject.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +24,7 @@ public class CommentController {
             @PathVariable
             Long id
     ) {
-        return commentService.getComments(id);
+        return commentService.getCommentsByPostId(id);
     }
 
     @GetMapping("/comments")
@@ -33,6 +33,6 @@ public class CommentController {
     public List<Comment> getCommentsByRequest(
             Long postId
     ) {
-        return commentService.getComments(postId);
+        return commentService.getCommentsByPostId(postId);
     }
 }

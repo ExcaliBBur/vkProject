@@ -1,7 +1,7 @@
 package com.example.vkproject.service;
 
-import com.example.vkproject.dto.PostRequest;
-import com.example.vkproject.model.Post;
+import com.example.vkproject.dto.post.PostRequest;
+import com.example.vkproject.model.entity.Post;
 import com.example.vkproject.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;

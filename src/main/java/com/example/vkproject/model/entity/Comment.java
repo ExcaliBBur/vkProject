@@ -1,4 +1,4 @@
-package com.example.vkproject.model;
+package com.example.vkproject.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

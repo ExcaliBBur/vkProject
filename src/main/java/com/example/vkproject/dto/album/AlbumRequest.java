@@ -1,17 +1,12 @@
-package com.example.vkproject.model;
+package com.example.vkproject.dto.album;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class Post {
-
+public class AlbumRequest {
     Long userId;
 
-    Long id;
-
     String title;
-
-    String body;
 }
