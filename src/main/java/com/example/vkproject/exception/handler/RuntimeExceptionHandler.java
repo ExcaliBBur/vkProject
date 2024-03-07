@@ -9,8 +9,8 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class RuntimeExceptionHandler {
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException exception) {
-        return new ResponseEntity<>(Map.of("error", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(value = RuntimeException.class)
+//    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException exception) {
+//        return new ResponseEntity<>(Map.of("error", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
