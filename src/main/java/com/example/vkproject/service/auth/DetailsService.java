@@ -1,7 +1,7 @@
-package com.example.vkproject.service;
+package com.example.vkproject.service.auth;
 
 import com.example.vkproject.model.entity.jpa.User;
-import com.example.vkproject.repository.jpa.UserJpaRepository;
+import com.example.vkproject.repository.auth.UserJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

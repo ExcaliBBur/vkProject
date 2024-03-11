@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller.api;
+package com.example.vkproject.contoller.api.post;
 
 import com.example.vkproject.model.entity.Comment;
 import com.example.vkproject.service.api.CommentService;
@@ -21,7 +21,7 @@ public class CommentController {
     @GetMapping("/posts/{id}/comments")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить комментарии у поста")
-    @PreAuthorize("hasAuthority('ROLE_POSTS_VIEWER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Comment> getCommentsByPath(
             @PathVariable
             Long id
@@ -32,7 +32,7 @@ public class CommentController {
     @GetMapping("/comments")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить комментарии у поста")
-    @PreAuthorize("hasAuthority('ROLE_POSTS_VIEWER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Comment> getCommentsByRequest(
             Long postId
     ) {

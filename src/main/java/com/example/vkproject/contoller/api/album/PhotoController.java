@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller.api;
+package com.example.vkproject.contoller.api.album;
 
 import com.example.vkproject.model.entity.Photo;
 import com.example.vkproject.service.api.PhotosService;
@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class PhotoController {
     @GetMapping("/albums/{id}/photos")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить фотографии в альбоме ")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Photo> getPhotosByPath(
             @PathVariable
             Long id
@@ -29,6 +31,7 @@ public class PhotoController {
     @GetMapping("/photos")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить фотографии в альбоме")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Photo> getPhotosByRequest(
             Long albumId
     ) {

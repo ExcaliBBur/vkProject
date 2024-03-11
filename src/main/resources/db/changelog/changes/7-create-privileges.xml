@@ -4,8 +4,36 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet author="ExcaliBBur" id="7-create-privileges">
-<!--        <insert tableName="privileges">-->
-<!--            <column name="name" value="IMAGE_UPLOAD_PRIVILEGE"/>-->
-<!--        </insert>-->
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_ADMIN_VIEWER"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_ADMIN_EDITOR"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_POSTS_VIEWER"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_POSTS_EDITOR"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_USERS_VIEWER"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_USERS_EDITOR"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_ALBUMS_VIEWER"/>
+        </insert>
+
+        <insert tableName="privileges">
+            <column name="name" value="ROLE_ALBUMS_EDITOR"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

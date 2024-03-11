@@ -1,4 +1,4 @@
-package com.example.vkproject.service;
+package com.example.vkproject.service.api;
 
 import com.example.vkproject.model.entity.Comment;
 import com.example.vkproject.repository.api.implementations.CommentRepositoryImpl;

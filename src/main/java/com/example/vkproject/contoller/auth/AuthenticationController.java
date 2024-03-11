@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller;
+package com.example.vkproject.contoller.auth;
 
 
 import com.example.vkproject.dto.auth.AuthenticateUser;
@@ -8,7 +8,6 @@ import com.example.vkproject.service.auth.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

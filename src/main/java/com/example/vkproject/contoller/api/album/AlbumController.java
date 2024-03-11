@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller.api;
+package com.example.vkproject.contoller.api.album;
 
 import com.example.vkproject.dto.album.AlbumRequest;
 import com.example.vkproject.model.entity.Album;
@@ -22,7 +22,7 @@ public class AlbumController {
     @GetMapping("/albums")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить альбомы")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_VIEWER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Album> getAlbums(
             Long userId
     ) {
@@ -35,7 +35,7 @@ public class AlbumController {
     @GetMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить альбом")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_VIEWER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public Album getAlbum(
             @PathVariable
             Long id
@@ -46,7 +46,7 @@ public class AlbumController {
     @PostMapping("/albums")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Создать альбом")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_EDITOR')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public Album createAlbum(
             @RequestBody
             AlbumRequest album
@@ -57,7 +57,7 @@ public class AlbumController {
     @PutMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить альбом")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_EDITOR')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public Album updateAlbum(
             @RequestBody
             AlbumRequest album,
@@ -70,7 +70,7 @@ public class AlbumController {
     @DeleteMapping("/albums/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Удалить альбом")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_EDITOR')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ALBUMS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public void deleteAlbum(
             @PathVariable
             Long id
@@ -81,7 +81,7 @@ public class AlbumController {
     @GetMapping("/users/{id}/albums")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить альбомы пользователя")
-    @PreAuthorize("hasAuthority('ROLE_ALBUMS_VIEWER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Album> getUserAlbumsByPath(
             @PathVariable
             Long id
@@ -89,4 +89,3 @@ public class AlbumController {
         return albumService.getUserAlbums(id);
     }
 }
-//TODO: сделать обработку вложенных привилегий??

@@ -5,12 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.naming.ServiceUnavailableException;
 import java.util.Map;
 
 @RestControllerAdvice
-public class RuntimeExceptionHandler {
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<Map<String, String>> handleRuntimeException(RuntimeException exception) {
-        return new ResponseEntity<>(Map.of("error", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+public class ServiceUnavailableExceptionHandler {
+    @ExceptionHandler(value = ServiceUnavailableException.class)
+    public ResponseEntity<Map<String, String>> handleServiceUnavailableException(ServiceUnavailableException exception) {
+        return new ResponseEntity<>(Map.of("error", exception.getMessage()), HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.vkproject.configuration;
+package com.example.vkproject.configuration.web;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;

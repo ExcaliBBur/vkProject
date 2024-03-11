@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller.api;
+package com.example.vkproject.contoller.api.post;
 
 import com.example.vkproject.dto.post.PostRequest;
 import com.example.vkproject.model.entity.Post;
@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class PostController {
     @GetMapping("/posts")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить посты")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Post> getPosts(
             Long userId
     ) {
@@ -34,6 +36,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить пост")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public Post getPost(
             @PathVariable
             Long id
@@ -44,6 +47,7 @@ public class PostController {
     @PostMapping("/posts")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Создать пост")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public Post createPost(
             @RequestBody
             PostRequest post
@@ -54,6 +58,7 @@ public class PostController {
     @PutMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить пост")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public Post updatePost(
             @RequestBody
             PostRequest post,
@@ -66,6 +71,7 @@ public class PostController {
     @DeleteMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Удалить пост")
+    @PreAuthorize("hasAnyAuthority('ROLE_POSTS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public void deletePost(
             @PathVariable
             Long id
@@ -76,6 +82,7 @@ public class PostController {
     @GetMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить посты пользователя")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<Post> getUserPostsByPath(
             @PathVariable
             Long id

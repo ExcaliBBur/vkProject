@@ -1,4 +1,4 @@
-package com.example.vkproject.contoller.api;
+package com.example.vkproject.contoller.api.user;
 
 import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.User;
@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить пользователей")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public List<User> getUsers() {
         return userService.getUsers();
     }
@@ -28,6 +30,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Получить пользователя")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_VIEWER', 'ROLE_ADMIN_VIEWER')")
     public User getUser(
             @PathVariable
             Long id
@@ -38,6 +41,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Создать пользователя")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public User createUser(
             @RequestBody
             UserRequest user
@@ -48,6 +52,7 @@ public class UserController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Обновить пользователя")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public User updateUser(
             @RequestBody
             UserRequest user,
@@ -60,6 +65,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Удалить пользователя")
+    @PreAuthorize("hasAnyAuthority('ROLE_USERS_EDITOR', 'ROLE_ADMIN_VIEWER')")
     public void deleteUser(
             @PathVariable
             Long id
