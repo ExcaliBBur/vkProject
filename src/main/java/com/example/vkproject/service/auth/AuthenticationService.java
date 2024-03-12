@@ -1,6 +1,7 @@
 package com.example.vkproject.service.auth;
 
 import com.example.vkproject.dto.auth.ResponseJwt;
+import com.example.vkproject.model.entity.jpa.Role;
 import com.example.vkproject.model.entity.jpa.User;
 import com.example.vkproject.utils.jwt.JwtUtils;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     public ResponseJwt register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(List.of(roleService.getRole("ROLE_ADMIN")));
+        List<Role> list = new ArrayList<>();
+        list.add(roleService.getRole("ROLE_ADMIN"));
+        user.setRoles(list);
 
         user = detailsService.createUser(user);
         String access = generateAccessToken(user);
