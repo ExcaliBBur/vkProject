@@ -1,8 +1,8 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.album;
 
 import com.example.vkproject.dto.album.AlbumRequest;
 import com.example.vkproject.model.entity.Album;
-import com.example.vkproject.repository.api.interfaces.AlbumRepository;
+import com.example.vkproject.repository.api.interfaces.album.AlbumRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

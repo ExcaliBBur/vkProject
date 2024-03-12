@@ -1,4 +1,4 @@
-package com.example.vkproject.repository.api.interfaces;
+package com.example.vkproject.repository.api.interfaces.user;
 
 import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.User;

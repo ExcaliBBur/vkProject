@@ -1,4 +1,4 @@
-package com.example.vkproject.repository.api.interfaces;
+package com.example.vkproject.repository.api.interfaces.post;
 
 import com.example.vkproject.model.entity.Comment;
 import org.springframework.stereotype.Repository;

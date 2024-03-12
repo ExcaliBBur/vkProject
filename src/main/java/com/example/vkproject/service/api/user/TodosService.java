@@ -1,7 +1,7 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.user;
 
 import com.example.vkproject.model.entity.Todos;
-import com.example.vkproject.repository.api.implementations.TodosRepositoryImpl;
+import com.example.vkproject.repository.api.implementations.user.TodosRepositoryImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package com.example.vkproject.contoller.api.post;
 
 import com.example.vkproject.dto.post.PostRequest;
 import com.example.vkproject.model.entity.Post;
-import com.example.vkproject.service.api.PostService;
+import com.example.vkproject.service.api.post.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

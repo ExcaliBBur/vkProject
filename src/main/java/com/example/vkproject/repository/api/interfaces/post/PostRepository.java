@@ -1,4 +1,4 @@
-package com.example.vkproject.repository.api.interfaces;
+package com.example.vkproject.repository.api.interfaces.post;
 
 import com.example.vkproject.dto.post.PostRequest;
 import com.example.vkproject.model.entity.Post;

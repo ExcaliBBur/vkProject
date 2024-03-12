@@ -1,10 +1,13 @@
-package com.example.vkproject.repository.api.implementations;
+package com.example.vkproject.repository.api.implementations.album;
 
 import com.example.vkproject.dto.album.AlbumRequest;
 import com.example.vkproject.model.entity.Album;
-import com.example.vkproject.repository.api.interfaces.AlbumRepository;
+import com.example.vkproject.repository.api.interfaces.album.AlbumRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -19,6 +22,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class AlbumRepositoryImpl implements AlbumRepository {
     private final WebClient webClient;
+
+    @Cacheable(value = "albums")
     public List<Album> getAlbums() {
         return List.of(Objects.requireNonNull(webClient
                 .get()
@@ -29,7 +34,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
                 .bodyToMono(Album[].class)
                 .block()));
     }
-
+    @Cacheable(value = "albums", key = "#id")
     public Album getAlbum(Long id) {
         return webClient
                 .get()
@@ -43,6 +48,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
                 .block();
     }
 
+    @CachePut(value = "albums")
     public Album createAlbum(AlbumRequest album) {
         return webClient
                 .post()
@@ -55,6 +61,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
                 .block();
     }
 
+    @CachePut(value = "albums", key = "#id")
     public Album updateAlbum(AlbumRequest album, Long id) {
         return webClient
                 .patch()
@@ -67,6 +74,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
                 .block();
     }
 
+    @CacheEvict(value = "albums")
     public void deleteAlbum(Long id) {
         webClient
                 .delete()
@@ -78,6 +86,7 @@ public class AlbumRepositoryImpl implements AlbumRepository {
                 .block();
     }
 
+    @Cacheable(value = "albums")
     public List<Album> getUserAlbums(Long userId) {
         return List.of(Objects.requireNonNull(webClient
                 .get()

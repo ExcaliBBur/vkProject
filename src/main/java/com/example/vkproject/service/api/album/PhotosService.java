@@ -1,7 +1,7 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.album;
 
 import com.example.vkproject.model.entity.Photo;
-import com.example.vkproject.repository.api.implementations.PhotosRepositoryImpl;
+import com.example.vkproject.repository.api.implementations.album.PhotosRepositoryImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

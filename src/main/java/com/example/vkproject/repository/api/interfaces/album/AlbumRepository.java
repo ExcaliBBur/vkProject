@@ -1,4 +1,4 @@
-package com.example.vkproject.repository.api.interfaces;
+package com.example.vkproject.repository.api.interfaces.album;
 
 import com.example.vkproject.dto.album.AlbumRequest;
 import com.example.vkproject.model.entity.Album;

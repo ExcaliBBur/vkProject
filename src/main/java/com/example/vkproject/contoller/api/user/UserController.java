@@ -2,7 +2,7 @@ package com.example.vkproject.contoller.api.user;
 
 import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.User;
-import com.example.vkproject.service.api.UserService;
+import com.example.vkproject.service.api.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

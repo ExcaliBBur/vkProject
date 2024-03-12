@@ -1,8 +1,8 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.post;
 
 import com.example.vkproject.dto.post.PostRequest;
 import com.example.vkproject.model.entity.Post;
-import com.example.vkproject.repository.api.implementations.PostRepositoryImpl;
+import com.example.vkproject.repository.api.implementations.post.PostRepositoryImpl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,13 @@
-package com.example.vkproject.repository.api.implementations;
+package com.example.vkproject.repository.api.implementations.user;
 
 import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.User;
-import com.example.vkproject.repository.api.interfaces.UserRepository;
+import com.example.vkproject.repository.api.interfaces.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -19,6 +22,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
     private final WebClient webClient;
+
+    @Cacheable(value = "users")
     public List<User> getUsers() {
         return List.of(Objects.requireNonNull(webClient
                 .get()
@@ -29,6 +34,8 @@ public class UserRepositoryImpl implements UserRepository {
                 .bodyToMono(User[].class)
                 .block()));
     }
+
+    @Cacheable(value = "users")
 
     public User getUser(Long id) {
         return webClient
@@ -43,6 +50,7 @@ public class UserRepositoryImpl implements UserRepository {
                 .block();
     }
 
+    @CachePut(value = "users")
     public User createUser(UserRequest user) {
         return webClient
                 .post()
@@ -55,6 +63,7 @@ public class UserRepositoryImpl implements UserRepository {
                 .block();
     }
 
+    @CachePut(value = "users", key = "#id")
     public User updateUser(UserRequest user, Long id) {
         return webClient
                 .patch()
@@ -67,6 +76,7 @@ public class UserRepositoryImpl implements UserRepository {
                 .block();
     }
 
+    @CacheEvict(value = "users")
     public void deleteUser(Long id) {
         webClient
                 .delete()

@@ -1,7 +1,7 @@
 package com.example.vkproject.contoller.api.user;
 
 import com.example.vkproject.model.entity.Todos;
-import com.example.vkproject.service.api.TodosService;
+import com.example.vkproject.service.api.user.TodosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

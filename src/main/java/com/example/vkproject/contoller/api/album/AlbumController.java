@@ -2,7 +2,7 @@ package com.example.vkproject.contoller.api.album;
 
 import com.example.vkproject.dto.album.AlbumRequest;
 import com.example.vkproject.model.entity.Album;
-import com.example.vkproject.service.api.AlbumService;
+import com.example.vkproject.service.api.album.AlbumService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

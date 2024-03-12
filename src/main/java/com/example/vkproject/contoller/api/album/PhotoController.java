@@ -1,7 +1,7 @@
 package com.example.vkproject.contoller.api.album;
 
 import com.example.vkproject.model.entity.Photo;
-import com.example.vkproject.service.api.PhotosService;
+import com.example.vkproject.service.api.album.PhotosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

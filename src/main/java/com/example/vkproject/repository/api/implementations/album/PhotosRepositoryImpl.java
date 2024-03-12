@@ -1,8 +1,9 @@
-package com.example.vkproject.repository.api.implementations;
+package com.example.vkproject.repository.api.implementations.album;
 
 import com.example.vkproject.model.entity.Photo;
-import com.example.vkproject.repository.api.interfaces.PhotosRepository;
+import com.example.vkproject.repository.api.interfaces.album.PhotosRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,6 +18,7 @@ import java.util.Objects;
 public class PhotosRepositoryImpl implements PhotosRepository {
     private final WebClient webClient;
 
+    @Cacheable(value = "photos")
     public List<Photo> getPhotosByAlbumId(Long albumId) {
         return List.of(Objects.requireNonNull(webClient
                 .get()

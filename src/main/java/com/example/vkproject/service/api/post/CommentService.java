@@ -1,7 +1,7 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.post;
 
 import com.example.vkproject.model.entity.Comment;
-import com.example.vkproject.repository.api.implementations.CommentRepositoryImpl;
+import com.example.vkproject.repository.api.implementations.post.CommentRepositoryImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

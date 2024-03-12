@@ -12,4 +12,5 @@
         <include file="/db/changelog/changes/7-create-privileges.xml"/>
         <include file="/db/changelog/changes/8-create-roles.xml"/>
         <include file="/db/changelog/changes/9-create-test-roles.xml"/>
+        <include file="/db/changelog/changes/10-create-log-table.xml"/>
 </databaseChangeLog>

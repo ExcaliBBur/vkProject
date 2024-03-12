@@ -1,8 +1,8 @@
-package com.example.vkproject.service.api;
+package com.example.vkproject.service.api.user;
 
 import com.example.vkproject.dto.user.UserRequest;
 import com.example.vkproject.model.entity.User;
-import com.example.vkproject.repository.api.implementations.UserRepositoryImpl;
+import com.example.vkproject.repository.api.implementations.user.UserRepositoryImpl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
