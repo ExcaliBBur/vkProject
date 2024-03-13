@@ -13,10 +13,8 @@ public class RoleService {
     private final RoleRepository roleRepository;
 
     public Role getRole(String name) {
-        Role role = roleRepository.findRoleByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("There is no role with such name"));
-
-        return role;
+        return roleRepository.findRoleByName(name)
+                .orElseThrow(() -> new EntityNotFoundException("Роли с таким именем не существует"));
     }
 
 }

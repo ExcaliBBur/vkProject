@@ -3,7 +3,6 @@ package com.example.vkproject.service.auth;
 import com.example.vkproject.dto.auth.ResponseUser;
 import com.example.vkproject.dto.auth.UpdateUserRequest;
 import com.example.vkproject.model.entity.jpa.Role;
-import com.example.vkproject.model.entity.jpa.User;
 import com.example.vkproject.repository.auth.UserJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;

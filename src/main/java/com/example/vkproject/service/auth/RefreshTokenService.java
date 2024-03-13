@@ -24,16 +24,14 @@ public class RefreshTokenService {
     }
 
     public RefreshToken getToken(User user) {
-        RefreshToken refreshToken = refreshTokenRepository.findByUser(user)
-                .orElseThrow(() -> new EntityNotFoundException("There is no token for this user"));
-
-        return refreshToken;
+        return refreshTokenRepository.findByUser(user)
+                .orElseThrow(() -> new EntityNotFoundException("Токена для этого пользователя не существует"));
     }
 
     @Transactional
     public void deleteToken(String refresh) {
         if (!refreshTokenRepository.existsByToken(refresh)) {
-            throw new EntityNotFoundException("There is no such token");
+            throw new EntityNotFoundException("Такого токена не существует");
         }
 
         refreshTokenRepository.deleteByToken(refresh);

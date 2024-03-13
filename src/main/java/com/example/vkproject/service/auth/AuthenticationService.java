@@ -1,6 +1,8 @@
 package com.example.vkproject.service.auth;
 
 import com.example.vkproject.dto.auth.ResponseJwt;
+import com.example.vkproject.exception.InvalidJwtException;
+import com.example.vkproject.model.entity.jpa.RefreshToken;
 import com.example.vkproject.model.entity.jpa.Role;
 import com.example.vkproject.model.entity.jpa.User;
 import com.example.vkproject.utils.jwt.JwtUtils;
@@ -63,5 +65,42 @@ public class AuthenticationService {
         refreshTokenService.setToken(user, token);
 
         return token;
+    }
+
+    public ResponseJwt getAccessToken(String refresh) {
+        User user = extractUser(refresh);
+
+        String access = generateAccessToken(user);
+
+        return new ResponseJwt(access, refresh);
+    }
+
+    public ResponseJwt refreshToken(String refresh) {
+        User user = extractUser(refresh);
+
+        String updatedRefresh = generateRefreshToken(user);
+        String updatedAccess = generateAccessToken(user);
+
+        return new ResponseJwt(updatedAccess, updatedRefresh);
+    }
+
+    private User extractUser(String refresh) {
+        if (!jwtUtils.isRefreshTokenValid(refresh)) {
+            throw new InvalidJwtException("Недействительный refresh токен");
+        }
+
+        String username = jwtUtils.extractRefreshUsername(refresh);
+        User user = (User) detailsService.loadUserByUsername(username);
+        RefreshToken savedRefresh = refreshTokenService.getToken(user);
+
+        if (!savedRefresh.getToken().equals(refresh)) {
+            throw new InvalidJwtException("Несоответствие refresh токенов");
+        }
+
+        return user;
+    }
+
+    public void eraseRefreshToken(String refresh) {
+        refreshTokenService.deleteToken(refresh);
     }
 }
