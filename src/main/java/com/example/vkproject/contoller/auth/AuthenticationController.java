@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "comments", description = "Контроллер для регистрации и аутентификации пользователей")
+@Tag(name = "auth", description = "Контроллер для регистрации и аутентификации пользователей")
 @AllArgsConstructor
 public class AuthenticationController {
 

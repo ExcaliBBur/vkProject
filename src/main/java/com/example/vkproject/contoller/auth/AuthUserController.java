@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
-@Tag(name = "users", description = "Контроллер для работы с пользователями для администратора")
+@Tag(name = "auth", description = "Контроллер для работы с пользователями для администратора")
 @AllArgsConstructor
 public class AuthUserController {
     private final AuthUserService authUserService;
