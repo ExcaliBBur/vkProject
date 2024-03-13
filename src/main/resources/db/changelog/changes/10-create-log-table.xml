@@ -4,20 +4,36 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet author="ExcaliBBur" id="10-create-log-table">
-        <createTable tableName="log_table">
+        <createTable tableName="log">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints
                         primaryKey="true"/>
             </column>
-            <column name="log_time" type="DATETIME">
+            <column name="time" type="TIMESTAMP">
                 <constraints
                         nullable="false"/>
             </column>
-            <column name="log_level" type="TEXT">
+            <column name="username" type="TEXT">
                 <constraints
                         nullable="false"/>
             </column>
-            <column name="message" type="TEXT">
+            <column name="method" type="TEXT">
+                <constraints
+                        nullable="false"/>
+            </column>
+            <column name="uri" type="TEXT">
+                <constraints
+                        nullable="false"/>
+            </column>
+            <column name="authorities" type="TEXT">
+                <constraints
+                        nullable="false"/>
+            </column>
+            <column name="has_permission" type="BOOL">
+                <constraints
+                        nullable="false"/>
+            </column>
+            <column name="headers" type="TEXT">
                 <constraints
                         nullable="false"/>
             </column>
