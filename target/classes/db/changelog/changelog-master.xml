@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+        <include file="/db/changelog/changes/1-create-users-table.xml"/>
+        <include file="/db/changelog/changes/2-create-refresh-table.xml"/>
+        <include file="/db/changelog/changes/3-create-roles-table.xml"/>
+        <include file="/db/changelog/changes/4-create-privileges-table.xml"/>
+        <include file="/db/changelog/changes/5-create-users-roles-table.xml"/>
+        <include file="/db/changelog/changes/6-create-roles-privileges-table.xml"/>
+        <include file="/db/changelog/changes/7-create-privileges.xml"/>
+        <include file="/db/changelog/changes/8-create-roles.xml"/>
+        <include file="/db/changelog/changes/9-create-test-roles.xml"/>
+        <include file="/db/changelog/changes/10-create-log-table.xml"/>
+</databaseChangeLog>
