@@ -69,3 +69,4 @@ docker-compose up -d
    * login: users, password: usersusers, роль: ROLE_USERS, привилегии: ROLE_USERS_VIEWER, ROLE_USERS_EDITOR
 - Авторизация и аутентификация реализована с помощью JWT токенов, поддерживающих refresh токены. 
 - REST api для создания и обновления пользователей
+- Возможность экспорта Postman-коллекции для тестирования (файл postman_collection.json)
