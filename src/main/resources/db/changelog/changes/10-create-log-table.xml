@@ -33,10 +33,6 @@
                 <constraints
                         nullable="false"/>
             </column>
-            <column name="headers" type="TEXT">
-                <constraints
-                        nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

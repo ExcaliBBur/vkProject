@@ -1,8 +1,9 @@
 package com.example.vkproject.model.entity.logger;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +29,4 @@ public class Log {
     private String authorities;
 
     private Boolean hasPermission;
-
-    private String headers;
 }
