@@ -39,3 +39,33 @@
 Также реализовать базовую авторизацию и ролевую модель, ведение аудита запросов. Кэш не требуется. 
 
 Для подключения по websocket использовать wss://echo.websocket.org
+
+# Запуск
+
+```shell
+git clone https://github.com/ExcaliBBur/vkProject.git
+
+cd vkProject
+
+mvn clean package
+
+docker-compose build
+
+docker-compose up -d
+```
+
+Сервер доступен по адресу [localhost:8080](http://localhost:8080/)
+
+Спецификация доступна по адресу [localhost:8080/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
+
+# Что дополнительно реализовано
+
+- Система сборки Maven. Для запуска приложения используется Docker.
+- Использование базы данных для ведения аудита и хранения пользователей
+- Доступные пользователи по умолчанию: 
+   * login: admin, password: adminadmin, роль: ROLE_ADMIN, привилегии: ROLE_ADMIN_VIEWER, ROLE_ADMIN_EDITOR
+   * login: posts, password: postsposts, роль: ROLE_POSTS, привилегии: ROLE_POSTS_VIEWER, ROLE_POSTS_EDITOR
+   * login: albums, password: albumsalbums, роль: ROLE_ALBUMS, привилегии: ROLE_ALBUMS_VIEWER, ROLE_ALBUMS_EDITOR
+   * login: users, password: usersusers, роль: ROLE_USERS, привилегии: ROLE_USERS_VIEWER, ROLE_USERS_EDITOR
+- Авторизация и аутентификация реализована с помощью JWT токенов, поддерживающих refresh токены. 
+- REST api для создания и обновления пользователей
